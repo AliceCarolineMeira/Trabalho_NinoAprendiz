@@ -1,0 +1,22 @@
+body{
+    background-color: #fb979b;
+}
+.logo{
+    height: 100px;
+    width: 100px;    
+}
+h1{
+    text-align: center;
+}
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th{
+    text-align: left;
+    padding: 5px;
+}
+.img{
+    width: 300px;
+    height: 200px;
+}

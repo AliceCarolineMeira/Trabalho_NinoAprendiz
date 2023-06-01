@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento</title>
+    <link rel="stylesheet" href="stylepp.css" />
+
+</head>
+<body>
+
+        <a href="PagPrincipal.html"><img class="logo" src="img/w.png" alt="Logo"></a>
+
+    <header>
+        <div class="navbar" onclick="abrir_menu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>      
+    </header>
+    
+    <div id="formulario">
+        <h2>NOS ENVIE SEU FEEDBACK!</h2>
+
+        <div class="formulario">
+            <div class="nome">
+                <label for="nome">Informe o seu nome:</label>
+                <textarea id="txtArea" rows="2" cols="70"></textarea>
+            </div>
+        
+            <div class="email">
+                <label for="email"> Email:</label>
+                <textarea id="texto" rows="2" cols="70"></textarea>
+            </div>
+        
+            <div class="mensagem">
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="texto" rows="12" cols="70"></textarea>
+            </div>
+        
+            <div class="Enviar">
+                <button onclick="">Enviar</button>
+            </div>
+        </div>
+
+<footer>
+    <nav class="container">
+        <a href="QuemSomos.html">
+            <span class="visible-lg">Quem somos</span>
+        </a><br>
+        <a href="forms.html">
+            <span class="visible-lg">Contato</span>
+        </a>
+        <p class="copy-right">Copyright © 2023</p>
+</footer>
+<script>
+
+  const submenu = document.querySelector('.menu')
+
+  const navbar = document.querySelector('.navbar')
+
+  const abrir_menu = () => {
+
+      submenu.classList.toggle('active')
+      navbar.classList.toggle('active')
+  }
+
+  $('.carousel').carousel({
+  interval: 10
+  });
+</script>
+</body>
+
+</html>

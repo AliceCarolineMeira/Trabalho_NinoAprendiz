@@ -1,0 +1,41 @@
+body{
+    margin-bottom: 0%;
+    background-image: url(images/fundo.png);
+    background-size: 100%;
+    background-repeat:no-repeat;
+}
+h1{
+    font-size: 17vh;
+    text-align: center;
+    padding-top: 0%;
+    margin-bottom: 1%;
+}
+.logo{
+    height: 100px;
+    width: 100px;       
+}
+img{
+    margin: 0;
+    padding: 0;
+    height: 30%;
+    width: 30%;
+}
+.imagem{
+    text-align: center;
+}
+button{
+    background-color: rgba(255, 205, 41, 0.651);
+    font-size: 8vh;
+    padding: 2%;
+    padding-left: 3%;
+    padding-right: 3%;
+    border-radius: 13%;
+}
+.botao{
+    text-align: center;
+}
+button:hover {
+    transform: scale(1.10)
+   }
+
+</html>

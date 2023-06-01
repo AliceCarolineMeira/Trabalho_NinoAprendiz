@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jogo de Relacionar Imagens e Palavras</title>
+  <style>
+    body{
+        background-image: url(img/fundo.palavras.png);
+        background-size: 100%;
+    background-repeat:no-repeat;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    }
+    /* Estilos CSS para o jogo */
+    .game-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .image-container{
+      width: 10rem;
+      height: 8rem;
+      margin: 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .word-container {
+      width: 10rem;
+      height: 3rem;
+      margin: 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-container {
+      background-color: #f2f2f2;
+    }
+
+    .image {
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+    }
+
+    .word-container {
+      background-color: #ccc;
+    }
+    .jogo{
+        margin-top: 10%;
+    }
+  </style>
+</head>
+<body>
+    <div class="jogo">
+  <div class="game-container">
+    <div class="image-container">
+        <img class="image" src="img/Perro.png" alt="PERRO">
+    </div>
+    <div class="image-container">
+        <img class="image" src="img/TIBURÓN.png" alt="TIBURÓN">
+    </div>
+    <div class="image-container">
+        <img class="image" src="img/PATO.png" alt="PATO">
+    </div>
+    <div class="image-container">
+        <img class="image" src="img/CABALLO.png" alt="CABALLO">
+    </div>
+    <div class="image-container">
+        <img class="image" src="img/CERDO.png" alt="CERDO">
+    </div>
+    <div class="game-container">
+        <div class="image-container">
+            <img class="image" src="img/GALLINA.png" alt="GALLINA">
+        </div>
+        <div class="image-container">
+            <img class="image" src="img/CONEJO.png" alt="CONEJO">
+        </div>
+        <div class="image-container">
+            <img class="image" src="img/GATO.png" alt="GATO">
+        </div>
+        <div class="image-container">
+            <img class="image" src="img/LEÓN.png" alt="LEÓN">
+        </div>
+        <div class="image-container">
+            <img class="image" src="img/VACA.png" alt="VACA">
+        </div>
+    <!-- Adicione mais 5 imagens aqui -->
+  </div>
+  <div class="game-container">
+    <div class="word-container">
+      <span class="word">GATO</span>
+    </div>
+    <div class="word-container">
+      <span class="word">CERDO</span>
+    </div>
+    <div class="word-container">
+      <span class="word">LEÓN</span>
+    </div>
+    <div class="word-container">
+      <span class="word">PATO</span>
+    </div>
+    <div class="word-container">
+      <span class="word">TIBURÓN</span>
+    </div>
+    
+ 
+  </div>
+  <div class="game-container">
+    <div class="word-container">
+      <span class="word">PERRO</span>
+    </div>
+    <div class="word-container">
+      <span class="word">GALLINA</span>
+    </div>
+    <div class="word-container">
+      <span class="word">CONEJO</span>
+    </div>
+    <div class="word-container">
+      <span class="word">VACA</span>
+    </div>
+    <div class="word-container">
+      <span class="word">CABALLO</span>
+    </div>
+    
+  </div>
+</div>
+
+  <script>
+    // JavaScript para adicionar interatividade ao jogo
+    const imageContainers = document.querySelectorAll('.image-container');
+    const sounds = {
+      'PERRO': 'audios/Perro.mp3',
+      'TIBURÓN': 'audios/Tiburón.mp3',
+      'PATO':'audios/Pato.mp3',
+      'CABALLO':'audios/Caballo.mp3',
+      'CERDO':'audios/Cerdo.mp3',
+      'GALLINA':'audios/Gallina.mp3',
+      'CONEJO':'audios/Conejo.mp3',
+      'GATO':'audios/Gato.mp3',
+      'LEÓN':'audios/León.mp3',
+      'VACA':'audios/Vaca.mp3',
+    };
+
+    imageContainers.forEach((container) => {
+      const image = container.querySelector('.image');
+
+      container.addEventListener('click', () => {
+        playSound(image.alt);
+      });
+
+      function playSound(imageAlt) {
+        const audio = new Audio(sounds[imageAlt]);
+        audio.play();
+      }
+    });
+    const images = document.querySelectorAll('.image');
+    const words = document.querySelectorAll('.word');
+
+    // Adiciona eventos de clique às imagens e palavras
+    images.forEach((image) => {
+      image.addEventListener('click', selectImage);
+    });
+
+    words.forEach((word) => {
+      word.addEventListener('click', selectWord);
+    });
+
+    let selectedImage = null;
+    let selectedWord = null;
+
+    // Função chamada quando uma imagem é selecionada
+    function selectImage() {
+      // Remove a classe de destaque de qualquer imagem selecionada anteriormente
+      if (selectedImage) {
+        selectedImage.classList.remove('selected');
+      }
+
+      // Adiciona a classe de destaque à imagem selecionada
+      this.classList.add('selected');
+
+      // Armazena a imagem selecionada
+      selectedImage = this;
+
+      // Verifica se há uma palavra selecionada para verificar a correspondência
+      checkMatch();
+    }
+
+    // Função chamada quando uma palavra é selecionada
+    function selectWord() {
+      // Remove a classe de destaque de qualquer palavra selecionada anteriormente
+      if (selectedWord) {
+        selectedWord.classList.remove('selected');
+      }
+
+      // Adiciona a classe de destaque à palavra selecionada
+      this.classList.add('selected');
+
+      // Armazena a palavra selecionada
+      selectedWord = this;
+
+      // Verifica se há uma imagem selecionada para verificar a correspondência
+      checkMatch();
+    }
+
+    // Função para verificar se a imagem e a palavra selecionadas correspondem
+    function checkMatch() {
+      if (selectedImage && selectedWord) {
+        // Lógica de verificação de correspondência
+        if (selectedImage.alt === selectedWord.textContent) {
+          // Correspondência encontrada
+          alert('Correspondência correta!');
+        } else {
+          // Correspondência incorreta
+          alert('Correspondência incorreta!');
+        }
+
+        // Limpa a seleção
+        selectedImage.classList.remove('selected');
+        selectedWord.classList.remove('selected');
+        selectedImage = null;
+        selectedWord = null;
+      }
+    }
+  </script>
+</body>
+</html>
